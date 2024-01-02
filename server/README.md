@@ -8,7 +8,11 @@ $ # result -> Put your static files in this directory and then delete this file.
 You can have un-authorized routes.
 
 ```
+//unauthorized
 $ curl http://localhost:8080/unauthorized
+$ # result -> true
+// пример
+$ curl http://localhost:8080/products
 $ # result -> true
 ```
 
