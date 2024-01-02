@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Header from './ui/Header'
+import HomeComponent from './ui/HomeComponent'
 import Footer from './ui/Footer'
 
 import './index.scss'
@@ -8,7 +9,9 @@ import './index.scss'
 const App = () => (
   <div className='text-3xl mx-auto max-w-6xl'>
     <Header />
-    <div className='my-10'>Home Page Content</div>
+    <div className='my-10'>
+      <HomeComponent />
+    </div>
     <Footer />
   </div>
 )
