@@ -1,23 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { Outlet } from 'react-router-dom'
 import Header from 'home/Header'
 import Footer from 'home/Footer'
-import SafeComponent from './SafeComponent'
-import PDPComponent from "./PDPContent"
 
 import './index.scss'
 
 
-const App = () => {
+export const App = () => {
   return (
     <div className='text-3xl mx-auto max-w-6xl'>
-      <SafeComponent>
-        <Header  />
-      </SafeComponent>
-      <div className='my-10'><PDPComponent /></div>
+      <Header />
+      <div className='my-10'>{<Outlet />}</div>
       <Footer />
     </div>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('app'))
