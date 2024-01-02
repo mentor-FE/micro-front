@@ -4,6 +4,7 @@ import Header from './ui/Header'
 import HomeComponent from './ui/HomeComponent'
 import Footer from './ui/Footer'
 
+import 'remixicon/fonts/remixicon.css'
 import './index.scss'
 
 const App = () => (
