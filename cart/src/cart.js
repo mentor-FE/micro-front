@@ -23,7 +23,7 @@ export const getCart = () =>
       return res
     })
 
-export const addToCard = (id) =>
+export const addToCart = (id) =>
   fetch(`${API_SERVER}/cart`, {
     method: 'POST',
     headers: {

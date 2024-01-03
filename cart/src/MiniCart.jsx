@@ -18,7 +18,7 @@ const MiniCart = () => {
   return (
     <>
       <span onClick={() => setShowCart(!showCart)} id='showcart_span'>
-        <i className='ri-shopping-cart-2-fill text-2xl' id='showcart'>
+        <i className='ri-shopping-cart-2-fill text-2xl text-white' id='showcart'>
           {items.length}
         </i>
       </span>
@@ -29,7 +29,7 @@ const MiniCart = () => {
             style={{
               width: 300,
               top: '2rem',
-              // left: -250
+              left: -250
             }}
           >
             <div

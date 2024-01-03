@@ -1,9 +1,19 @@
-import react from 'react'
+// import react from 'react'
+import MiniCart from 'cart/MiniCart'
+import Login from 'cart/Login'
 
 export default function Header() {
   return (
-    <div className='p-5 bg-blue-500 text-white text-3xl font-bold'>
-      Fidget Spinner World II
+    <div className='p-5 bg-blue-500 text-3xl font-bold'>
+      <div className='flex'>
+        <div className='flex-grow flex text-white'>
+         Fidget Spinner World
+        </div>
+        <div className='flex-end relative'>
+          <MiniCart />
+          <Login />
+        </div>
+      </div>
     </div>
   )
 }
