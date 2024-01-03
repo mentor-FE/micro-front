@@ -16,7 +16,7 @@ export default function Login() {
       </span>
       {showLogin && (
         <div
-          className='absolute p-5 border-4 border-blue-800'
+          className='absolute p-5 border-4 border-blue-800 bg-white'
           style={{
             width: 300,
             top: '2rem',
@@ -36,7 +36,7 @@ export default function Login() {
             className='border text-sm border-gray-400 p-2 rounded-md w-full'
           />
           <button
-            className='bg-green-900 text-white py-2 px-5 rounded-md'
+            className='block bg-green-900 text-white py-2 px-4 rounded-md mt-5'
             onClick={() => login(username, password)}
             id='logginbtn'
           >
