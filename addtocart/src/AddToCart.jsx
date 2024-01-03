@@ -1,5 +1,5 @@
 import { createEffect, createSignal, Show} from 'solid-js';
-import { jwt } from './../../cart/src/cart'
+import { jwt, addToCart } from 'cart/cart'
 
 
 export default ({ id }) => {

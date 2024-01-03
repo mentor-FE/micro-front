@@ -7,11 +7,11 @@ const MiniCart = () => {
   const [showCart, setShowCart] = useState(false)
 
   useEffect(() => {
-    setItems(cart.value?.cartItems)
+    setItems(cart.value?.cartItems);
     return cart.subscribe((c) => {
-      setItems(c?.cartItems)
-    })
-  }, [])
+      setItems(c?.cartItems);
+    });
+  }, []);
 
   if (!items) return null
 
