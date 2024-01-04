@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getProducts, currency } from '../products'
 import { addToCart, useLoggedIn } from 'cart/cart'
 
-const HomeComponent = () => {
+const HomeContent = () => {
   const loggedIn = useLoggedIn()
   const [products, setProduct] = useState([])
   useEffect(() => {
@@ -40,4 +40,4 @@ const HomeComponent = () => {
   )
 }
 
-export default HomeComponent
+export default HomeContent

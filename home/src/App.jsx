@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Outlet } from 'react-router-dom'
 import Header from './ui/Header'
-import HomeComponent from './ui/HomeComponent'
+import HomeContent from './ui/HomeContent'
 import Footer from './ui/Footer'
 
 import 'remixicon/fonts/remixicon.css'
@@ -12,9 +13,11 @@ const App = () => (
   <div className='text-3xl mx-auto max-w-6xl'>
     <Header />
     <div className='my-10 px-5 xl:px-0'>
-      <HomeComponent />
+      {/* <HomeContent /> */}
+      <Outlet />
     </div>
     <Footer />
   </div>
 )
-ReactDOM.render(<App />, document.getElementById('app'))
+
+export default App
