@@ -1,13 +1,12 @@
-const API_SERVER = 'http://localhost:8080'
+const API_SERVER = "http://localhost:8080";
 
-export const getProducts = () => {
- return fetch(`${API_SERVER}/products`).then((response) => response.json())
-}
-export const getProductById = (id) => {
- return fetch(`${API_SERVER}/products/${id}`).then((response) => response.json())
-}
+export const getProducts = () =>
+  fetch(`${API_SERVER}/products`).then((res) => res.json());
 
-export const currency = new Intl.NumberFormat('ru',{
+export const getProductById = (id) =>
+  fetch(`${API_SERVER}/products/${id}`).then((res) => res.json());
+
+export const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
-  currency: "RUB"
-})
+  currency: "USD",
+});

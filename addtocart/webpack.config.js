@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = (_, argv) => ({
+module.exports = {
   output: {
     publicPath: "http://localhost:3003/",
   },
@@ -14,6 +14,10 @@ module.exports = (_, argv) => ({
   devServer: {
     port: 3003,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    open: false,
   },
 
   module: {
@@ -44,11 +48,11 @@ module.exports = (_, argv) => ({
       name: "addtocart",
       filename: "remoteEntry.js",
       remotes: {
-        cart: 'cart@http://localhost:3002/remoteEntry.js', 
+        cart: "cart@http://localhost:3002/remoteEntry.js",
       },
       exposes: {
-        './AddToCart': './src/AddToCart.jsx',
-        './placeAddToCart': './src/placeAddToCart.js',
+        "./AddToCart": "./src/AddToCart.jsx",
+        "./placeAddToCart": "./src/placeAddToCart.js",
       },
       shared: {
         ...deps,
@@ -62,4 +66,4 @@ module.exports = (_, argv) => ({
       template: "./src/index.html",
     }),
   ],
-});
+};

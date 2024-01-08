@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = (_, argv) => ({
+module.exports = {
   output: {
     publicPath: "http://localhost:3000/",
   },
@@ -14,6 +14,9 @@ module.exports = (_, argv) => ({
   devServer: {
     port: 3000,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
 
   module: {
@@ -44,15 +47,16 @@ module.exports = (_, argv) => ({
       name: "home",
       filename: "remoteEntry.js",
       remotes: {
-        home: 'home@http://localhost:3000/remoteEntry.js',
-        pdp: 'pdp@http://localhost:3001/remoteEntry.js',
-        cart: 'cart@http://localhost:3002/remoteEntry.js', 
+        home: "home@http://localhost:3000/remoteEntry.js",
+        pdp: "pdp@http://localhost:3001/remoteEntry.js",
+        cart: "cart@http://localhost:3002/remoteEntry.js",
       },
       exposes: {
-        './Header': './src/ui/Header.jsx',
-        './Footer': './src/ui/Footer.jsx',
-        './products': './src/products.js',
-        './HomeContent': './src/ui/HomeContent.jsx',
+        "./Header": "./src/Header.jsx",
+        "./Footer": "./src/Footer.jsx",
+        "./products": "./src/products.js",
+        "./HomeContent": "./src/HomeContent.jsx",
+        "./MainLayout": "./src/MainLayout.jsx",
       },
       shared: {
         ...deps,
@@ -70,4 +74,4 @@ module.exports = (_, argv) => ({
       template: "./src/index.html",
     }),
   ],
-});
+};

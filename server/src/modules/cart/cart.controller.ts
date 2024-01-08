@@ -1,13 +1,14 @@
 import {
   Controller,
   Get,
-  Post,
-  Delete,
-  Body,
   Request,
   UseGuards,
+  Post,
+  Body,
+  Delete,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
+
 import products, { Product } from '../../products';
 
 interface CartItem extends Product {
@@ -15,24 +16,24 @@ interface CartItem extends Product {
 }
 
 interface Cart {
-  cartItems: CartItem[]
+  cartItems: CartItem[];
 }
 
 const initialCart = (indexes: number[]): Cart => ({
-  cartItems: indexes.map(index => ({
+  cartItems: indexes.map((index) => ({
     ...products[index],
-    quantity: 1
-  }))
-})
+    quantity: 1,
+  })),
+});
 
 @Controller('cart')
 export class CartController {
   private carts: Record<number, Cart> = {
     1: initialCart([0, 2, 4]),
     2: initialCart([1, 3]),
-    3: initialCart([6, 7, 8]),
   };
-  constructor() { }
+
+  constructor() {}
 
   @Get()
   @UseGuards(JwtAuthGuard)
@@ -44,23 +45,24 @@ export class CartController {
   @UseGuards(JwtAuthGuard)
   async create(@Request() req, @Body() { id }: { id: string }): Promise<Cart> {
     const cart = this.carts[req.user.userId];
-    const cartItems = cart.cartItems.find(cartItem => cartItem.id === parseInt(id))
-    if (cartItems) {
-      cartItems.quantity += 1;
+    const cartItem = cart.cartItems.find(
+      (cartItem) => cartItem.id === parseInt(id),
+    );
+    if (cartItem) {
+      cartItem.quantity += 1;
     } else {
       cart.cartItems.push({
-        ...products.find(product => product.id === parseInt(id)),
-        quantity: 1
-      })
+        ...products.find((product) => product.id === parseInt(id)),
+        quantity: 1,
+      });
     }
-    return cart
+    return cart;
   }
 
   @Delete()
   @UseGuards(JwtAuthGuard)
   async destroy(@Request() req): Promise<Cart> {
-    this.carts[req.user.userId] = { cartItems: [] }
-    return this.carts[req.user.userId]
+    this.carts[req.user.userId] = { cartItems: [] };
+    return this.carts[req.user.userId];
   }
-
 }

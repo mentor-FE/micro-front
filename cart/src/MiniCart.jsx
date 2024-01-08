@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { cart, clearCart } from './cart'
-import { currency } from 'home/products'
+import React, { useEffect, useState } from "react";
 
-const MiniCart = () => {
-  const [items, setItems] = useState(undefined)
-  const [showCart, setShowCart] = useState(false)
+import { cart, clearCart } from "./cart";
+import { currency } from "home/products";
+
+export default function MiniCart() {
+  const [items, setItems] = useState(undefined);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     setItems(cart.value?.cartItems);
@@ -13,37 +14,36 @@ const MiniCart = () => {
     });
   }, []);
 
-  if (!items) return null
+  if (!items) return null;
 
   return (
     <>
-      <span onClick={() => setShowCart(!showCart)} id='showcart_span'>
-        <i className='ri-shopping-cart-2-fill text-2xl text-white' id='showcart'>
-          {items.length}
-        </i>
+      <span onClick={() => setShowCart(!showCart)} id="showcart_span">
+        <i className="ri-shopping-cart-2-fill text-2xl" id="showcart"></i>
+        {items.length}
       </span>
       {showCart && (
         <>
           <div
-            className='absolute p-5 border-4 border-blue-800 bg-white'
+            className="absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
             style={{
               width: 300,
-              top: '2rem',
-              left: -250
+              top: "2rem",
+              left: -250,
             }}
           >
             <div
-              className='grid gap-3 text-sm'
+              className="grid gap-3 text-sm"
               style={{
-                gridTemplateColumns: '1fr 3fr 10fr 2fr',
+                gridTemplateColumns: "1fr 3fr 10fr 2fr",
               }}
             >
               {items.map((item) => (
                 <React.Fragment key={item.id}>
                   <div>{item.quantity}</div>
-                  <img src={item.image} alt={item.name} className='max-h-6' />
+                  <img src={item.image} alt={item.name} className="max-h-6" />
                   <div>{item.name}</div>
-                  <div className='text-right'>
+                  <div className="text-right">
                     {currency.format(item.quantity * item.price)}
                   </div>
                 </React.Fragment>
@@ -80,7 +80,5 @@ const MiniCart = () => {
         </>
       )}
     </>
-  )
+  );
 }
-
-export default MiniCart

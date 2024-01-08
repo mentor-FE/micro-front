@@ -1,7 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
+
 import products, { Product } from '../../products';
 
-@Controller('Products')
+@Controller('products')
 export class ProductsController {
   constructor() {}
 
@@ -11,7 +12,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-    async show(@Param('id') id: string): Promise<Product> {
-      return products.find((product) => product.id === parseInt(id))
-    }
+  async show(@Param('id') id: string): Promise<Product> {
+    return products.find((product) => product.id === parseInt(id));
+  }
 }

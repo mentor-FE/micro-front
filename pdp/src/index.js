@@ -1,2 +1,1 @@
-// import("./App");
-import("./main");
+import("./App");

@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = (_, argv) => ({
+module.exports = {
   output: {
     publicPath: "http://localhost:3001/",
   },
@@ -14,6 +14,10 @@ module.exports = (_, argv) => ({
   devServer: {
     port: 3001,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+    open: false,
   },
 
   module: {
@@ -44,13 +48,13 @@ module.exports = (_, argv) => ({
       name: "pdp",
       filename: "remoteEntry.js",
       remotes: {
-        home: 'home@http://localhost:3000/remoteEntry.js',
-        pdp: 'pdp@http://localhost:3001/remoteEntry.js',
-        cart: 'cart@http://localhost:3002/remoteEntry.js', 
-        addtocart: 'addtocart@http://localhost:3003/remoteEntry.js', 
+        home: "home@http://localhost:3000/remoteEntry.js",
+        pdp: "pdp@http://localhost:3001/remoteEntry.js",
+        cart: "cart@http://localhost:3002/remoteEntry.js",
+        addtocart: "addtocart@http://localhost:3003/remoteEntry.js",
       },
       exposes: {
-        './PDPContent': './src/PDPContent.jsx',
+        "./PDPContent": "./src/PDPContent.jsx",
       },
       shared: {
         ...deps,
@@ -68,4 +72,4 @@ module.exports = (_, argv) => ({
       template: "./src/index.html",
     }),
   ],
-});
+};
