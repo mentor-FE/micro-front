@@ -48,7 +48,7 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         './AddToCart': './src/AddToCart.jsx',
-        './placeAddToCart': './src/placeAddToCart.jsx',
+        './placeAddToCart': './src/placeAddToCart.js',
       },
       shared: {
         ...deps,
